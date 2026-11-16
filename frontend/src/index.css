@@ -1,0 +1,181 @@
+@import "tailwindcss";
+@import "@fontsource-variable/geist";
+
+/* Dark mode is class-driven (set by ThemeController / the inline script in index.html). */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/*
+  Design tokens.
+  Neutrals are one warm-neutral family (shared with the chart chrome).
+  One interactive accent (blue). Status colors are reserved for real state
+  (price up / savings / trial ending) and always ship with an icon + label.
+  Categorical chart slots follow the validated dataviz order, fixed per category.
+*/
+:root {
+  color-scheme: light;
+  --page: #f4f4f1;
+  --surface: #fcfcfb;
+  --surface-2: #f0f0ec;
+  --surface-3: #e7e6e0;
+  --line: rgba(11, 11, 11, 0.08);
+  --line-strong: rgba(11, 11, 11, 0.15);
+  --fg: #121211;
+  --fg-2: #52514e;
+  --fg-3: #6f6d68;
+  --ink: #121211;
+  --ink-fg: #fcfcfb;
+  --accent: #256abf;
+  --accent-strong: #1c5cab;
+  --accent-soft: rgba(42, 120, 214, 0.1);
+  --chart-1: #2a78d6;
+  --chart-1-soft: #86b6ef;
+  --grid: #e1e0d9;
+  --axis: #c3c2b7;
+  --good: #0ca30c;
+  --good-text: #006300;
+  --good-soft: rgba(12, 163, 12, 0.1);
+  --warn: #fab219;
+  --warn-text: #8a5a00;
+  --warn-soft: rgba(250, 178, 25, 0.16);
+  --bad: #d03b3b;
+  --bad-text: #b52f2f;
+  --bad-soft: rgba(208, 59, 59, 0.09);
+  --cat-video: #2a78d6;
+  --cat-music: #eb6834;
+  --cat-software: #1baf7a;
+  --cat-cloud: #eda100;
+  --cat-gaming: #e87ba4;
+  --cat-education: #008300;
+  --cat-fitness: #6250d6;
+  --cat-other: #a3a29b;
+  --shadow-sm: 0 1px 2px rgba(18, 18, 17, 0.05);
+  --shadow-md: 0 1px 2px rgba(18, 18, 17, 0.04), 0 12px 32px -12px rgba(18, 18, 17, 0.14);
+  --shadow-lg: 0 2px 6px rgba(18, 18, 17, 0.05), 0 24px 64px -16px rgba(18, 18, 17, 0.22);
+}
+
+.dark {
+  color-scheme: dark;
+  --page: #0d0d0d;
+  --surface: #1a1a19;
+  --surface-2: #232321;
+  --surface-3: #2d2d2a;
+  --line: rgba(255, 255, 255, 0.08);
+  --line-strong: rgba(255, 255, 255, 0.15);
+  --fg: #f0efec;
+  --fg-2: #c3c2b7;
+  --fg-3: #9a9890;
+  --ink: #f0efec;
+  --ink-fg: #121211;
+  --accent: #6da7ec;
+  --accent-strong: #86b6ef;
+  --accent-soft: rgba(57, 135, 229, 0.16);
+  --chart-1: #3987e5;
+  --chart-1-soft: #1c5cab;
+  --grid: #2c2c2a;
+  --axis: #383835;
+  --good: #0ca30c;
+  --good-text: #3fbf3f;
+  --good-soft: rgba(12, 163, 12, 0.16);
+  --warn: #fab219;
+  --warn-text: #fab219;
+  --warn-soft: rgba(250, 178, 25, 0.14);
+  --bad: #d03b3b;
+  --bad-text: #f07171;
+  --bad-soft: rgba(208, 59, 59, 0.18);
+  --cat-video: #3987e5;
+  --cat-music: #d95926;
+  --cat-software: #199e70;
+  --cat-cloud: #c98500;
+  --cat-gaming: #d55181;
+  --cat-education: #008300;
+  --cat-fitness: #9085e9;
+  --cat-other: #6b6a64;
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 1px 2px rgba(0, 0, 0, 0.4), 0 12px 32px -12px rgba(0, 0, 0, 0.6);
+  --shadow-lg: 0 2px 6px rgba(0, 0, 0, 0.4), 0 24px 64px -16px rgba(0, 0, 0, 0.7);
+}
+
+@theme inline {
+  --font-sans: "Geist Variable", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --color-page: var(--page);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-fg: var(--fg);
+  --color-fg-2: var(--fg-2);
+  --color-fg-3: var(--fg-3);
+  --color-ink: var(--ink);
+  --color-ink-fg: var(--ink-fg);
+  --color-accent: var(--accent);
+  --color-accent-strong: var(--accent-strong);
+  --color-accent-soft: var(--accent-soft);
+  --color-chart-1: var(--chart-1);
+  --color-chart-1-soft: var(--chart-1-soft);
+  --color-grid: var(--grid);
+  --color-axis: var(--axis);
+  --color-good: var(--good);
+  --color-good-text: var(--good-text);
+  --color-good-soft: var(--good-soft);
+  --color-warn: var(--warn);
+  --color-warn-text: var(--warn-text);
+  --color-warn-soft: var(--warn-soft);
+  --color-bad: var(--bad);
+  --color-bad-text: var(--bad-text);
+  --color-bad-soft: var(--bad-soft);
+
+  --shadow-sm: var(--shadow-sm);
+  --shadow-md: var(--shadow-md);
+  --shadow-lg: var(--shadow-lg);
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    background: var(--page);
+    color: var(--fg);
+    font-family: var(--font-sans);
+    font-feature-settings: "ss01" 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+  ::selection {
+    background: var(--accent-soft);
+  }
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+  /* Native date picker icon follows the theme. */
+  .dark input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(0.85);
+  }
+}
+
+@layer utilities {
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+  .dot-grid {
+    background-image: radial-gradient(var(--line-strong) 1px, transparent 1px);
+    background-size: 14px 14px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
