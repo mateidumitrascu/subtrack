@@ -44,6 +44,16 @@ const router = createBrowserRouter([
         lazy: async () => ({ Component: (await import('./components/layout/AppShell')).AppShell }),
         children: [
           { index: true, lazy: async () => ({ Component: (await import('./pages/Dashboard')).Dashboard }) },
+          {
+            path: 'subscriptions',
+            lazy: async () => ({ Component: (await import('./pages/Subscriptions')).Subscriptions }),
+          },
+          {
+            path: 'subscriptions/:id',
+            lazy: async () => ({
+              Component: (await import('./pages/SubscriptionDetail')).SubscriptionDetail,
+            }),
+          },
         ],
       },
       { path: '*', element: <NotFound /> },
