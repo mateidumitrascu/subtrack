@@ -58,6 +58,10 @@ const router = createBrowserRouter([
             path: 'calendar',
             lazy: async () => ({ Component: (await import('./pages/Calendar')).CalendarPage }),
           },
+          {
+            path: 'statistics',
+            lazy: async () => ({ Component: (await import('./pages/Statistics')).Statistics }),
+          },
         ],
       },
       { path: '*', element: <NotFound /> },
