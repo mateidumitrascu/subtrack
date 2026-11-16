@@ -1,6 +1,7 @@
 import { MotionConfig } from 'motion/react'
 import { useEffect } from 'react'
 import { createBrowserRouter, Navigate, Outlet, RouterProvider, ScrollRestoration } from 'react-router'
+import { SubscriptionSheet } from './components/SubscriptionForm'
 import { Toaster } from './components/ui/Toaster'
 import { useIsDark } from './hooks'
 import { NotFound } from './pages/NotFound'
@@ -25,6 +26,7 @@ function Root() {
       <DocumentSync />
       <ScrollRestoration />
       <Outlet />
+      <SubscriptionSheet />
       <Toaster />
     </MotionConfig>
   )
