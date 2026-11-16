@@ -1,4 +1,6 @@
 .env
+.env.*
+!.env.example
 node_modules/
 # Local development notes, credentials (never committed)
 notes/
