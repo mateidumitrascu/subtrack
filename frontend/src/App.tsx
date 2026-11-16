@@ -70,6 +70,10 @@ const router = createBrowserRouter([
             path: 'savings',
             lazy: async () => ({ Component: (await import('./pages/Savings')).Savings }),
           },
+          {
+            path: 'notifications',
+            lazy: async () => ({ Component: (await import('./pages/Notifications')).Notifications }),
+          },
         ],
       },
       { path: '*', element: <NotFound /> },
