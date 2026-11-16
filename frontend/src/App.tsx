@@ -1,7 +1,52 @@
-export default function App() {
+import { MotionConfig } from 'motion/react'
+import { useEffect } from 'react'
+import { createBrowserRouter, Navigate, Outlet, RouterProvider, ScrollRestoration } from 'react-router'
+import { Toaster } from './components/ui/Toaster'
+import { useIsDark } from './hooks'
+import { NotFound } from './pages/NotFound'
+import { useStore } from './store/store'
+
+/** Keeps <html> in sync with the theme and language settings. */
+function DocumentSync() {
+  const dark = useIsDark()
+  const lang = useStore((s) => s.settings.lang)
+  useEffect(() => {
+    document.documentElement.classList.toggle('dark', dark)
+  }, [dark])
+  useEffect(() => {
+    document.documentElement.lang = lang
+  }, [lang])
+  return null
+}
+
+function Root() {
   return (
-    <main className="grid min-h-dvh place-items-center">
-      <h1 className="text-2xl font-semibold">Subtrack</h1>
-    </main>
+    <MotionConfig reducedMotion="user">
+      <DocumentSync />
+      <ScrollRestoration />
+      <Outlet />
+      <Toaster />
+    </MotionConfig>
   )
+}
+
+const router = createBrowserRouter([
+  {
+    element: <Root />,
+    HydrateFallback: () => null,
+    children: [
+      { path: '/', element: <Navigate to="/app" replace /> },
+      {
+        // Each screen loads on demand.
+        path: '/app',
+        lazy: async () => ({ Component: (await import('./components/layout/AppShell')).AppShell }),
+        children: [],
+      },
+      { path: '*', element: <NotFound /> },
+    ],
+  },
+])
+
+export default function App() {
+  return <RouterProvider router={router} />
 }
