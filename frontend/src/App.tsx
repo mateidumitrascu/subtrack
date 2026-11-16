@@ -1,9 +1,10 @@
 import { MotionConfig } from 'motion/react'
 import { useEffect } from 'react'
-import { createBrowserRouter, Navigate, Outlet, RouterProvider, ScrollRestoration } from 'react-router'
+import { createBrowserRouter, Outlet, RouterProvider, ScrollRestoration } from 'react-router'
 import { SubscriptionSheet } from './components/SubscriptionForm'
 import { Toaster } from './components/ui/Toaster'
 import { useIsDark } from './hooks'
+import { Landing } from './pages/Landing'
 import { NotFound } from './pages/NotFound'
 import { useStore } from './store/store'
 
@@ -37,9 +38,9 @@ const router = createBrowserRouter([
     element: <Root />,
     HydrateFallback: () => null,
     children: [
-      { path: '/', element: <Navigate to="/app" replace /> },
+      { path: '/', element: <Landing /> },
       {
-        // Each screen loads on demand.
+        // The app is split from the landing page; each screen loads on demand.
         path: '/app',
         lazy: async () => ({ Component: (await import('./components/layout/AppShell')).AppShell }),
         children: [
