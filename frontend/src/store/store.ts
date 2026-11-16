@@ -1,11 +1,11 @@
 import { addDays } from 'date-fns'
 import { create } from 'zustand'
 import { createJSONStorage, persist } from 'zustand/middleware'
-import { fromISO, toISO, today as getToday } from '../lib/dates'
-import { convert } from '../lib/money'
-import type { Recommendation } from '../lib/recommendations'
-import { currentTerms, nextCharge } from '../lib/schedule'
-import { createSeed, DEFAULT_SETTINGS } from '../lib/seed'
+import { fromISO, toISO, today as getToday } from '@subtrack/shared/dates'
+import { convert } from '@subtrack/shared/money'
+import type { Recommendation } from '@subtrack/shared/recommendations'
+import { currentTerms, nextCharge } from '@subtrack/shared/schedule'
+import { createSeed, DEFAULT_SETTINGS } from '@subtrack/shared/seed'
 import type {
   CategoryId,
   Currency,
@@ -14,7 +14,7 @@ import type {
   Settings,
   Subscription,
   Usage,
-} from '../lib/types'
+} from '@subtrack/shared/types'
 
 /** Values coming from the add/edit form. */
 export interface SubscriptionInput {

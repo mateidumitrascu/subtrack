@@ -1,6 +1,6 @@
 import { useFormat, useToday } from '../hooks'
-import type { Recommendation } from '../lib/recommendations'
-import { currentTerms } from '../lib/schedule'
+import type { Recommendation } from '@subtrack/shared/recommendations'
+import { currentTerms } from '@subtrack/shared/schedule'
 
 /** Localized title, body and action label for a recommendation. */
 export function useRecommendationText(rec: Recommendation) {

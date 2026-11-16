@@ -12,19 +12,19 @@ import { DeltaBadge } from '../components/ui/Badge'
 import { ButtonLink } from '../components/ui/Button'
 import { useDocumentTitle, useFormat, useToday } from '../hooks'
 import { capitalize, formatDate } from '../i18n'
-import { monthSeries, priceChanges } from '../lib/analytics'
-import { fromISO } from '../lib/dates'
-import { formatCompact } from '../lib/money'
-import { buildNotifications, type AppNotification } from '../lib/notifications'
+import { monthSeries, priceChanges } from '@subtrack/shared/analytics'
+import { fromISO } from '@subtrack/shared/dates'
+import { formatCompact } from '@subtrack/shared/money'
+import { buildNotifications, type AppNotification } from '@subtrack/shared/notifications'
 import {
   buildRecommendations,
   potentialSavings,
   type Recommendation,
-} from '../lib/recommendations'
-import { chargesBetween } from '../lib/schedule'
-import type { Charge } from '../lib/types'
+} from '@subtrack/shared/recommendations'
+import { chargesBetween } from '@subtrack/shared/schedule'
+import type { Charge } from '@subtrack/shared/types'
 import { cn } from '../lib/cn'
-import { createSeed } from '../lib/seed'
+import { createSeed } from '@subtrack/shared/seed'
 import { useStore } from '../store/store'
 
 const ease = [0.16, 1, 0.3, 1] as const

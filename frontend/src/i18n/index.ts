@@ -1,7 +1,7 @@
 import { differenceInCalendarDays, format } from 'date-fns'
 import { enGB, ro as roLocale } from 'date-fns/locale'
 import { useStore } from '../store/store'
-import type { Lang } from '../lib/types'
+import type { Lang } from '@subtrack/shared/types'
 import { en } from './en'
 import { ro, type Dict } from './ro'
 

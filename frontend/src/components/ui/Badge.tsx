@@ -9,8 +9,8 @@ import {
 import type { ReactNode } from 'react'
 import { useI18n } from '../../i18n'
 import { cn } from '../../lib/cn'
-import { formatPercent } from '../../lib/money'
-import type { Status } from '../../lib/types'
+import { formatPercent } from '@subtrack/shared/money'
+import type { Status } from '@subtrack/shared/types'
 
 type Tone = 'neutral' | 'good' | 'warn' | 'bad' | 'accent'
 

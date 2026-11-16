@@ -5,8 +5,8 @@ import { useNavigate } from 'react-router'
 import { useToday } from '../hooks'
 import { useI18n } from '../i18n'
 import { CATALOG, getService, POPULAR_IDS, type CatalogService } from '../lib/catalog'
-import { toISO } from '../lib/dates'
-import { currentTerms, effectiveStatus } from '../lib/schedule'
+import { toISO } from '@subtrack/shared/dates'
+import { currentTerms, effectiveStatus } from '@subtrack/shared/schedule'
 import {
   CATEGORIES,
   CURRENCIES,
@@ -18,7 +18,7 @@ import {
   type Cycle,
   type Subscription,
   type Usage,
-} from '../lib/types'
+} from '@subtrack/shared/types'
 import { useStore } from '../store/store'
 import { useUI } from '../store/ui'
 import { ServiceLogo } from './ServiceLogo'

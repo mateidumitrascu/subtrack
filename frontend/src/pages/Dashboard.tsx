@@ -11,9 +11,9 @@ import { Button } from '../components/ui/Button'
 import { EmptyState } from '../components/ui/EmptyState'
 import { useDocumentTitle, useFormat, useRecommendations, useToday } from '../hooks'
 import { capitalize, formatDate } from '../i18n'
-import { categoryBreakdown, monthSeries, priceChanges, totals } from '../lib/analytics'
+import { categoryBreakdown, monthSeries, priceChanges, totals } from '@subtrack/shared/analytics'
 import { cn } from '../lib/cn'
-import { fromISO } from '../lib/dates'
+import { fromISO } from '@subtrack/shared/dates'
 import {
   afterTrialMonthly,
   chargesBetween,
@@ -21,8 +21,8 @@ import {
   nextCharge,
   priceAt,
   segmentAt,
-} from '../lib/schedule'
-import { CATEGORIES, type Charge, type Subscription } from '../lib/types'
+} from '@subtrack/shared/schedule'
+import { CATEGORIES, type Charge, type Subscription } from '@subtrack/shared/types'
 import { useStore } from '../store/store'
 
 export function Dashboard() {

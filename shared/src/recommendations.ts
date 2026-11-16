@@ -1,10 +1,10 @@
 import { addDays, subYears } from 'date-fns'
-import { priceChanges } from './analytics'
-import { getService } from './catalog'
-import { fromISO } from './dates'
-import { convert } from './money'
-import { currentTerms, effectiveStatus, monthlyCost, monthlyIn } from './schedule'
-import type { Currency, Cycle, Rates, Subscription, Usage } from './types'
+import { priceChanges } from './analytics.ts'
+import { getService as builtinCatalog, type OverlapGroup, type ServiceLookup } from './catalog.ts'
+import { fromISO } from './dates.ts'
+import { convert } from './money.ts'
+import { currentTerms, effectiveStatus, monthlyCost, monthlyIn } from './schedule.ts'
+import type { Currency, Cycle, Rates, Subscription, Usage } from './types.ts'
 
 export type RecKind = 'trial' | 'duplicate' | 'unused' | 'student' | 'annual' | 'downgrade'
 
@@ -18,7 +18,7 @@ export interface Recommendation {
   sub: Subscription
   /** Duplicates: the overlapping subscription we suggest keeping. */
   keep?: Subscription
-  group?: 'music' | 'video' | 'cloud'
+  group?: OverlapGroup
   /** Estimated saving per month, in the base currency. */
   monthlySavings: number
   action: RecAction
@@ -41,6 +41,8 @@ export function buildRecommendations(
   subs: Subscription[],
   today: Date,
   settings: RecSettings,
+  /** Catalog lookup; pass `catalogLookup(servicesFromDb)` once the catalog comes from Supabase. */
+  getService: ServiceLookup = builtinCatalog,
 ): Recommendation[] {
   const { baseCurrency: base, rates } = settings
   const recs: Recommendation[] = []
@@ -65,7 +67,7 @@ export function buildRecommendations(
   }
 
   // 2. Overlapping services (two music apps, two cloud drives...). Keep the one used most.
-  const groups = new Map<'music' | 'video' | 'cloud', Subscription[]>()
+  const groups = new Map<OverlapGroup, Subscription[]>()
   for (const sub of active) {
     const overlap = getService(sub.serviceId)?.overlap
     if (!overlap) continue

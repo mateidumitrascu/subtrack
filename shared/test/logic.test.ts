@@ -1,14 +1,13 @@
 import { addDays } from 'date-fns'
 import { describe, expect, it } from 'vitest'
-import { roPlural } from '../i18n/plural'
-import { monthSeries, priceChanges, totals } from './analytics'
-import { fromISO, toISO } from './dates'
-import { convert, formatMoney } from './money'
-import { buildNotifications } from './notifications'
-import { buildRecommendations, potentialSavings } from './recommendations'
-import { chargeDates, currentTerms, effectiveStatus, monthlyCost, priceAt } from './schedule'
-import { createSeed, DEFAULT_SETTINGS } from './seed'
-import type { Subscription } from './types'
+import { monthSeries, priceChanges, totals } from '../src/analytics.ts'
+import { fromISO, toISO } from '../src/dates.ts'
+import { convert, formatMoney } from '../src/money.ts'
+import { buildNotifications } from '../src/notifications.ts'
+import { buildRecommendations, potentialSavings } from '../src/recommendations.ts'
+import { chargeDates, currentTerms, effectiveStatus, monthlyCost, priceAt } from '../src/schedule.ts'
+import { createSeed, DEFAULT_SETTINGS } from '../src/seed.ts'
+import type { Subscription } from '../src/types.ts'
 
 const TODAY = fromISO('2026-11-12')
 const rates = DEFAULT_SETTINGS.rates
@@ -97,16 +96,6 @@ describe('money', () => {
     expect(formatMoney(10.99, 'EUR', 'ro')).toBe('10,99 €')
     expect(formatMoney(20, 'USD', 'en')).toBe('$20.00')
     expect(formatMoney(12, 'RON', 'ro', { sign: true, decimals: 0 })).toBe('+12 lei')
-  })
-})
-
-describe('Romanian plurals', () => {
-  it('adds "de" from 20 upwards', () => {
-    expect(roPlural(1, 'zi', 'zile')).toBe('1 zi')
-    expect(roPlural(3, 'zi', 'zile')).toBe('3 zile')
-    expect(roPlural(19, 'zi', 'zile')).toBe('19 zile')
-    expect(roPlural(20, 'zi', 'zile')).toBe('20 de zile')
-    expect(roPlural(101, 'zi', 'zile')).toBe('101 zile')
   })
 })
 

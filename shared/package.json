@@ -1,0 +1,22 @@
+{
+  "name": "@subtrack/shared",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "description": "Domain types and pure billing / statistics / notification / recommendation logic, shared by the frontend, the backend and the Supabase Edge Functions.",
+  "exports": {
+    ".": "./src/index.ts",
+    "./*": "./src/*.ts"
+  },
+  "scripts": {
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit -p ."
+  },
+  "dependencies": {
+    "date-fns": "^4.4.0"
+  },
+  "devDependencies": {
+    "typescript": "~7.0.2",
+    "vitest": "^5.1.0"
+  }
+}

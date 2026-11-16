@@ -7,11 +7,11 @@ import {
   useSyncExternalStore,
 } from 'react'
 import { useI18n, longDate, relativeDay, shortDate } from './i18n'
-import { today as getToday } from './lib/dates'
-import { formatMoney, formatPercent, type MoneyOptions } from './lib/money'
-import { buildNotifications, isUnread, type AppNotification } from './lib/notifications'
-import { buildRecommendations, potentialSavings } from './lib/recommendations'
-import type { Currency } from './lib/types'
+import { today as getToday } from '@subtrack/shared/dates'
+import { formatMoney, formatPercent, type MoneyOptions } from '@subtrack/shared/money'
+import { buildNotifications, isUnread, type AppNotification } from '@subtrack/shared/notifications'
+import { buildRecommendations, potentialSavings } from '@subtrack/shared/recommendations'
+import type { Currency } from '@subtrack/shared/types'
 import { useStore } from './store/store'
 
 /* ---------- today (refreshes when the tab regains focus on a new day) ---------- */

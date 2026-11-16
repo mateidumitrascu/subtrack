@@ -8,16 +8,16 @@ import {
   subMonths,
   subYears,
 } from 'date-fns'
-import { CHARGES_PER_YEAR, fromISO } from './dates'
-import { convert } from './money'
+import { CHARGES_PER_YEAR, fromISO } from './dates.ts'
+import { convert } from './money.ts'
 import {
   afterTrialMonthly,
   chargesBetween,
   effectiveStatus,
   monthlyCost,
   segmentAt,
-} from './schedule'
-import type { CategoryId, Currency, Cycle, Rates, Subscription } from './types'
+} from './schedule.ts'
+import type { CategoryId, Currency, Cycle, Rates, Subscription } from './types.ts'
 
 export interface Totals {
   monthly: number

@@ -1,6 +1,6 @@
 import { addDays, addYears, subYears } from 'date-fns'
-import { addCycle, fromISO, monthlyFactor } from './dates'
-import { convert } from './money'
+import { addCycle, fromISO, monthlyFactor } from './dates.ts'
+import { convert } from './money.ts'
 import type {
   Charge,
   Currency,
@@ -9,7 +9,7 @@ import type {
   ScheduleSegment,
   Status,
   Subscription,
-} from './types'
+} from './types.ts'
 
 /** A trial whose end date has passed is billed like an active subscription. */
 export function effectiveStatus(sub: Subscription, today: Date): Status {

@@ -1,5 +1,5 @@
 import { addDays } from 'date-fns'
-import { addCycle, toISO } from './dates'
+import { addCycle, toISO } from './dates.ts'
 import type {
   CategoryId,
   Currency,
@@ -8,7 +8,7 @@ import type {
   Status,
   Subscription,
   Usage,
-} from './types'
+} from './types.ts'
 
 /*
   Demo data, generated relative to "today" so renewals and trials are always
@@ -16,7 +16,7 @@ import type {
   sample values.
 */
 
-interface SeedDef {
+export interface SeedDef {
   id: string
   serviceId?: string
   name: string
@@ -41,7 +41,8 @@ interface SeedDef {
   createdDaysAgo?: number
 }
 
-const DEFS: SeedDef[] = [
+/** Also turned into SQL by shared/scripts/to-sql.ts (the `seed_demo_data` function). */
+export const DEMO_DEFS: SeedDef[] = [
   {
     id: 's-chatgpt',
     serviceId: 'chatgpt',
@@ -331,7 +332,7 @@ function build(def: SeedDef, today: Date): Subscription {
 }
 
 export function createSeed(today: Date): Subscription[] {
-  return DEFS.map((d) => build(d, today))
+  return DEMO_DEFS.map((d) => build(d, today))
 }
 
 export const DEFAULT_SETTINGS: Settings = {

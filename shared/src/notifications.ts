@@ -1,8 +1,8 @@
 import { addDays } from 'date-fns'
-import { priceChanges } from './analytics'
-import { fromISO, toISO } from './dates'
-import { chargeDates, effectiveStatus, priceAt } from './schedule'
-import type { Currency, Rates, Subscription } from './types'
+import { priceChanges } from './analytics.ts'
+import { fromISO, toISO } from './dates.ts'
+import { chargeDates, effectiveStatus, priceAt } from './schedule.ts'
+import type { Currency, Rates, Subscription } from './types.ts'
 
 export type NotificationKind = 'renewal' | 'trial' | 'price'
 

@@ -10,7 +10,7 @@ import {
 } from '@phosphor-icons/react'
 import { motion } from 'motion/react'
 import { useFormat } from '../hooks'
-import type { RecKind, Recommendation } from '../lib/recommendations'
+import type { RecKind, Recommendation } from '@subtrack/shared/recommendations'
 import { useStore } from '../store/store'
 import { useUI } from '../store/ui'
 import { useRecommendationText } from './RecommendationText'

@@ -1,4 +1,4 @@
-import type { Currency, Lang, Rates } from './types'
+import type { Currency, Lang, Rates } from './types.ts'
 
 export function toRON(amount: number, currency: Currency, rates: Rates): number {
   return currency === 'RON' ? amount : amount * rates[currency]

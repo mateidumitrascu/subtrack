@@ -9,10 +9,10 @@ import { EmptyState } from '../components/ui/EmptyState'
 import { Select } from '../components/ui/Field'
 import { useDocumentTitle, useFormat, useToday } from '../hooks'
 import { formatDate } from '../i18n'
-import { priceChanges } from '../lib/analytics'
+import { priceChanges } from '@subtrack/shared/analytics'
 import { cn } from '../lib/cn'
-import { fromISO } from '../lib/dates'
-import { formatCompact } from '../lib/money'
+import { fromISO } from '@subtrack/shared/dates'
+import { formatCompact } from '@subtrack/shared/money'
 import { useStore } from '../store/store'
 
 export function PriceChanges() {

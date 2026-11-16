@@ -17,9 +17,9 @@ import { Card, PageHeader } from '../components/ui/Card'
 import { useDocumentTitle, useFormat, useToday } from '../hooks'
 import { capitalize, formatDate } from '../i18n'
 import { cn } from '../lib/cn'
-import { toISO } from '../lib/dates'
-import { chargesBetween } from '../lib/schedule'
-import type { Charge } from '../lib/types'
+import { toISO } from '@subtrack/shared/dates'
+import { chargesBetween } from '@subtrack/shared/schedule'
+import type { Charge } from '@subtrack/shared/types'
 import { useStore } from '../store/store'
 
 export function CalendarPage() {

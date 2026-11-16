@@ -7,7 +7,7 @@ import {
   parseISO,
   startOfDay,
 } from 'date-fns'
-import type { Cycle, ISODate } from './types'
+import type { Cycle, ISODate } from './types.ts'
 
 export const toISO = (d: Date): ISODate => format(d, 'yyyy-MM-dd')
 

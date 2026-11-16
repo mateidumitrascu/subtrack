@@ -2,7 +2,7 @@ import { CalendarCheck, Hourglass, TrendDown, TrendUp } from '@phosphor-icons/re
 import { Link } from 'react-router'
 import { useFormat, useToday } from '../hooks'
 import { cn } from '../lib/cn'
-import type { AppNotification } from '../lib/notifications'
+import type { AppNotification } from '@subtrack/shared/notifications'
 import { ServiceLogo } from './ServiceLogo'
 
 export function useNotificationText(n: AppNotification) {
