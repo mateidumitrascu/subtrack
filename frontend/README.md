@@ -11,7 +11,7 @@ yearly spending, track price changes and get tips for paying less.
 ## Run it
 
 ```bash
-npm install
+npm install        # run in the repo root: npm workspaces (frontend + shared)
 npm run dev        # http://localhost:5173  (landing page)
                    # http://localhost:5173/app  (the app)
 ```
@@ -21,7 +21,7 @@ npm run dev        # http://localhost:5173  (landing page)
 | `npm run dev` | Vite dev server |
 | `npm run build` | Type-check + production build into `dist/` |
 | `npm run preview` | Serve the production build |
-| `npm test` | Unit tests for the billing / statistics / recommendation logic (Vitest) |
+| `npm test` | Frontend unit tests (the billing / statistics / recommendation tests live in `shared/`) |
 | `npm run lint` | oxlint |
 
 No backend is needed. Everything is stored in the browser (`localStorage`).
@@ -50,17 +50,22 @@ Geist font (self-hosted via Fontsource). Charts are hand-written SVG.
 
 ## Structure
 
+The pure logic (no React) lives in the `@subtrack/shared` workspace package
+(`../shared`), so the backend and the Supabase Edge Functions use the same code:
+
 ```
-src/
-  lib/            pure logic, no React: reuse it in tests or port it to the backend
-    types.ts            data model
-    schedule.ts         charge dates, next renewal, monthly cost
-    analytics.ts        totals, monthly/yearly series, categories, price changes
-    recommendations.ts  savings rules
-    notifications.ts    alerts derived from the data
-    catalog.ts          known services (logo, plans, student/yearly offers)
-    seed.ts             demo data, generated relative to today
-    logic.test.ts       unit tests
+shared/src/
+  types.ts            data model
+  schedule.ts         charge dates, next renewal, monthly cost
+  analytics.ts        totals, monthly/yearly series, categories, price changes
+  recommendations.ts  savings rules
+  notifications.ts    alerts derived from the data
+  catalog.ts          known services (plans, student/yearly offers)
+  seed.ts             demo data, generated relative to today
+shared/test/          unit tests
+
+frontend/src/
+  lib/            frontend-only helpers (catalog.ts adds the Simple Icons logos, cn.ts)
   store/          Zustand stores (data + UI state)
   i18n/           ro.ts / en.ts dictionaries (same shape, type-checked)
   components/     UI primitives, charts, app shell, the subscription form
@@ -80,8 +85,9 @@ src/
 ### Connecting a backend
 
 The store actions in `src/store/store.ts` are the only place that writes data.
-Replace them with API calls (or wrap them in TanStack Query) and keep the `lib/`
-functions as they are, or move them to the server.
+Each one has a matching Supabase RPC that takes and returns the same types;
+see the table in `../supabase/README.md`. Copy `.env.example` to `.env` for the
+project URL and publishable key. The `@subtrack/shared` functions stay as they are.
 
 ## Notes
 
