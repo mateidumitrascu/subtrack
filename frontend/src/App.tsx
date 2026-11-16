@@ -40,7 +40,9 @@ const router = createBrowserRouter([
         // Each screen loads on demand.
         path: '/app',
         lazy: async () => ({ Component: (await import('./components/layout/AppShell')).AppShell }),
-        children: [],
+        children: [
+          { index: true, lazy: async () => ({ Component: (await import('./pages/Dashboard')).Dashboard }) },
+        ],
       },
       { path: '*', element: <NotFound /> },
     ],
