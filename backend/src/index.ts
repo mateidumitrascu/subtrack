@@ -1,5 +1,6 @@
-import express from 'express'
+import express, { type NextFunction, type Request, type Response } from 'express'
 import { config } from './config.ts'
+import { notificationsRouter } from './routes/notifications.ts'
 import { requireUser } from './auth.ts'
 import { adminClient } from './supabase.ts'
 import { startScheduler } from './scheduler.ts'
@@ -26,6 +27,14 @@ app.get('/api/health', async (_req, res) => {
 // Smoke test for auth: who am I?
 app.get('/api/me', requireUser, (req, res) => {
   res.json({ userId: req.userId })
+})
+
+app.use('/api/notifications', notificationsRouter)
+
+// Any error thrown in a route ends up here (Express 5 also catches async ones).
+app.use((err: unknown, _req: Request, res: Response, _next: NextFunction) => {
+  console.error('[api]', err)
+  res.status(500).json({ error: 'internal server error' })
 })
 
 app.listen(config.port, () => {
