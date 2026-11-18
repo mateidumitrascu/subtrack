@@ -2,6 +2,7 @@ import express from 'express'
 import { config } from './config.ts'
 import { requireUser } from './auth.ts'
 import { adminClient } from './supabase.ts'
+import { startScheduler } from './scheduler.ts'
 
 const app = express()
 app.use(express.json())
@@ -29,4 +30,5 @@ app.get('/api/me', requireUser, (req, res) => {
 
 app.listen(config.port, () => {
   console.log(`backend listening on http://localhost:${config.port}`)
+  startScheduler()
 })
